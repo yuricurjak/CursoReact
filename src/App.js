@@ -1,8 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './css/pure-min.css';
 import './css/side-menu.css';
+import axios from 'axios';
 
 function App() {
+  const [autores, setAutores] = useState([]);
+  async function getAutores(){
+    const response = await axios.get('http://localhost:4000');
+      setAutores(response.data)
+  }
+  getAutores();
+
   return (
       <div id="layout">
 
@@ -60,10 +68,16 @@ function App() {
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>Alberto</td>
-                  <td>alberto.souza@caelum.com.br</td>
-                </tr>
+                {
+                  autores.map((autor) =>{
+                    return (
+                        <tr>
+                          <td>{autor.nome}</td>
+                          <td>{autor.email}</td>
+                        </tr>
+                    );
+                  })
+                }
                 </tbody>
               </table>
             </div>
