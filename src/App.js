@@ -1,7 +1,8 @@
 import React from 'react';
 import './css/pure-min.css';
 import './css/side-menu.css';
-import BoxAutor from "./Autor";
+import {Link} from 'react-router-dom';
+
 
 function App() {
 
@@ -9,7 +10,7 @@ function App() {
       <div id="layout">
 
         <a href="#menu" id="menuLink" className="menu-link">
-          <span></span>
+          <span> </span>
         </a>
 
         <div id="menu">
@@ -17,9 +18,9 @@ function App() {
             <a className="pure-menu-heading" href="#">Company</a>
 
             <ul className="pure-menu-list">
-              <li className="pure-menu-item"><a href="#" className="pure-menu-link">Home</a></li>
-              <li className="pure-menu-item"><a href="#" className="pure-menu-link">Autor</a></li>
-              <li className="pure-menu-item"><a href="#" className="pure-menu-link">Livros</a></li>
+              <li className="pure-menu-item"><Link to="/" className="pure-menu-link">Home</Link></li>
+              <li className="pure-menu-item"><Link to="/autor" className="pure-menu-link">Autor</Link></li>
+              <li className="pure-menu-item"><Link to="/livro" className="pure-menu-link">Livros</Link></li>
 
 
 
@@ -28,12 +29,6 @@ function App() {
         </div>
 
         <div id="main">
-          <div className="header">
-            <h1>Cadastro de Autores</h1>
-          </div>
-          <div className="content" id="content">
-            <BoxAutor/>
-          </div>
         </div>
 
       </div>

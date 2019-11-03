@@ -22,12 +22,11 @@ function FormularioAutor (props){
         setSenha(evento.target.value);
     }
 
-
     async function enviaForm(event) {
         event.preventDefault();
         try {
             PubSub.publish('limpa-erros',{});
-            const resp = await axios.post('http://localhost:3001', {nome, email, senha});
+            const resp = await axios.post('http://localhost:3001/autores', {nome, email, senha});
             console.log('Enviado com sucesso');
             props.setAtualiza(resp);
             setNome('');
@@ -89,7 +88,7 @@ export default function BoxAutor(){
 
     useEffect(() =>{
         async function getAutores(){
-            const response = await axios.get('http://localhost:3001');
+            const response = await axios.get('http://localhost:3001/autores');
             setAutores(response.data);
         }
         getAutores();
@@ -97,8 +96,13 @@ export default function BoxAutor(){
 
     return(
         <div>
-            <FormularioAutor setAtualiza={setAtualiza}/>
-            <TabelaAutores autores={autores}/>
+            <div className="header">
+                <h1>Cadastro de autores</h1>
+            </div>
+            <div className="content" id="content">
+                <FormularioAutor setAtualiza={setAtualiza}/>
+                <TabelaAutores autores={autores}/>
+            </div>
         </div>
         )
 
